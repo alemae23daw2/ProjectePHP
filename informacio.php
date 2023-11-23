@@ -13,7 +13,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Login</p>
-    <p>hol</p>
+    <p>Explicacion de la Pagina web y su funcionalidad la tienda es de piedras</p>
 </body>
 </html>
