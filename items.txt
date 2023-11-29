@@ -1,0 +1,4 @@
+patata:23€:5%:Si
+poma:40€:7%:Si
+pan:68€:2%:No
+hola:56€:3%:Si
