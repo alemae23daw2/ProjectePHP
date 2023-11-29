@@ -1,18 +1,48 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuari_real = "admin";  //credencials provisionals
-    $contrasenya_real = "123";
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    define('FITXER_USUARIS',"usuaris/usuaris");
+    define('TEMPS_EXPIRACIO',900);
+    define('ADMIN',"1");
+	define('USR',"0");
+    define('GESTOR',"2");
 
-    $usuari_introduit = $_POST["usuari"];
-    $contrasenya_introduida = $_POST["contrasenya"];
-
-    if ($usuari_introduit == $usuari_real && $contrasenya_introduida == $contrasenya_real) {
-        header("Location: main.html");
-        exit();
-    } else {
-        header("Location: login_error.php");
+    function fLlegeixFitxer($nomFitxer){
+        if ($fp=fopen($nomFitxer,"r")) {
+            $midaFitxer=filesize($nomFitxer);
+            $dades = explode(PHP_EOL, fread($fp,$midaFitxer));
+            array_pop($dades);			
+            fclose($fp);
+        }
+        return $dades;
     }
-}
+
+    function fAutenticacio($nomUsuariComprova){
+		$usuaris = fLlegeixFitxer(FITXER_USUARIS);
+		foreach ($usuaris as $usuari) {
+			$dadesUsuari = explode(":", $usuari);
+			$nomUsuari = $dadesUsuari[0];
+			$ctsUsuari = $dadesUsuari[1];
+			if(($nomUsuari == $nomUsuariComprova) && (password_verify($_POST['contrasenya'],$ctsUsuari))){
+				$autenticat=true;
+				break;
+			}
+			else  $autenticat=false;
+		}
+		return $autenticat;
+	}
+
+    if ((isset($_POST['usuari'])) && (isset($_POST['contrasenya']))){
+		$autenticat = fAutenticacio($_POST['usuari']);
+		if($autenticat){
+			session_start();
+			$_SESSION['usuari'] = $_POST['usuari'];
+			$_SESSION['expira'] = time() + TEMPS_EXPIRACIO;
+			header("Location: menu.php");					
+		}else{
+            header("Location: login_error.php");
+        }				
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

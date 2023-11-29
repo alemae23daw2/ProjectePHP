@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +10,6 @@
 </head>
 <body>
     <h3 style="color: red;">Error de login</h3 style="color: red;">
-    <button type="button" onclick="location='index.php'">Tornar a l'inici</button>
+    <button type="button" onclick="location='login.php'">Tornar al login</button>
 </body>
 </html>

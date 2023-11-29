@@ -1,6 +1,4 @@
 <?php
-session_start();
-session_id();
 ?>
 <!DOCTYPE html>
 <html lang="en">
