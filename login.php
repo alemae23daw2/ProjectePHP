@@ -1,44 +1,58 @@
 <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
+    define('FITXER_ADMIN',"usuaris/admin");
     define('FITXER_USUARIS',"usuaris/usuaris");
-    define('TEMPS_EXPIRACIO',900);
+    define('FITXER_GESTORS',"usuaris/gestors");
+    define('TEMPS_EXPIRACIO', 900);
     define('ADMIN',"1");
 	define('USR',"0");
     define('GESTOR',"2");
+
+    $fitxers = [FITXER_ADMIN, FITXER_USUARIS, FITXER_GESTORS];
 
     function fLlegeixFitxer($nomFitxer){
         if ($fp=fopen($nomFitxer,"r")) {
             $midaFitxer=filesize($nomFitxer);
             $dades = explode(PHP_EOL, fread($fp,$midaFitxer));
-            array_pop($dades);			
+            array_pop($dades);
             fclose($fp);
         }
         return $dades;
     }
 
-    function fAutenticacio($nomUsuariComprova){
-		$usuaris = fLlegeixFitxer(FITXER_USUARIS);
-		foreach ($usuaris as $usuari) {
-			$dadesUsuari = explode(":", $usuari);
-			$nomUsuari = $dadesUsuari[0];
-			$ctsUsuari = $dadesUsuari[1];
-			if(($nomUsuari == $nomUsuariComprova) && (password_verify($_POST['contrasenya'],$ctsUsuari))){
-				$autenticat=true;
-				break;
-			}
-			else  $autenticat=false;
-		}
-		return $autenticat;
+    function fAutenticacio($nomUsuariComprova, $f){
+        for($i = 0, $size = count($f); $i < $size; $i++){
+            $usuaris = fLlegeixFitxer($f[$i]);
+            foreach ($usuaris as $usuari) {
+                $dadesUsuari = explode(":", $usuari);
+                $nomUsuari = $dadesUsuari[0];
+                $ctsUsuari = $dadesUsuari[1];
+                $tipusUsuari = $dadesUsuari[3];
+                if(($nomUsuari == $nomUsuariComprova) && (password_verify($_POST['contrasenya'],$ctsUsuari))){
+                    $autenticat=true;
+                    return [$autenticat, $tipusUsuari];
+                }
+                else $autenticat=false;
+            }
+            
+        }
+		return [$autenticat, $tipusUsuari];
 	}
 
     if ((isset($_POST['usuari'])) && (isset($_POST['contrasenya']))){
-		$autenticat = fAutenticacio($_POST['usuari']);
+		[$autenticat, $tipusUsuari] = fAutenticacio($_POST['usuari'], $fitxers);
 		if($autenticat){
 			session_start();
 			$_SESSION['usuari'] = $_POST['usuari'];
 			$_SESSION['expira'] = time() + TEMPS_EXPIRACIO;
-			header("Location: menu.php");					
+            if($tipusUsuari == ADMIN){
+                header("Location: menuAdmin.php");
+            }else if($tipusUsuari == GESTOR){
+                header("Location: menuGestor.php");
+            }else if($tipusUsuari == USR){
+                header("Location: menuUsuari.php");
+            }
 		}else{
             header("Location: login_error.php");
         }				
