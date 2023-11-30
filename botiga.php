@@ -19,11 +19,12 @@
             text-align: center;
         }
 
-        section {
+        .div1 {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
             padding: 20px;
+            column-gap: 150px;
         }
 
         .item {
@@ -54,7 +55,7 @@
         <h1>Tienda Online</h1>
     </header>
 
-    <section>
+    <div class="div1">
 
         <?php
         session_start(); // Inicia la sesión
@@ -126,7 +127,7 @@
         }
         ?>
 
-    </section>
+    </div>
 
     <div id="carrito">
         <h2>Carrito de la compra</h2>
