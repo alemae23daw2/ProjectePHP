@@ -10,7 +10,7 @@
 <body>
     <h1>Projecte PHP</h1>
     <h2>Àlex Maench i Adrià Milian</h2>
-    <button type="button" onclick="location='login.php'">Login</button>
-    <button type="button" onclick="location='informacio.php'">Informació</button>
+    <a href="login.php"><button type="button">Login</button></a>
+    <a href="info.php"><button type="button">Informació</button></a>
 </body>
 </html>
