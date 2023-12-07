@@ -47,7 +47,7 @@
         <p><a href="personal.php">Canviar credencials d'ADMIN</a></p>
         <p><a href="professional.php">Llista GESTORS</a></p>
         <p><a href="serveis.php">Llista USUARIS</a></p>
-        <p><a href="registre.php">Registre de nous GESTORS</a></p>
+        <p><a href="registreGestor.php">Registre de nous GESTORS</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 
         <?php

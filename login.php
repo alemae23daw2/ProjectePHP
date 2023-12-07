@@ -75,7 +75,7 @@
         <input type="password" id="contrasenya" name="contrasenya" required><br>
 
         <input type="submit" value="Iniciar sessió"><br><br>
-        <a href="registre.php"><button type="button">Registre</button></a>
+        <a href="registreUsuari.php"><button type="button">Registre</button></a>
         <a href="index.php"><button type="button">Inici</button></a>
     </form>
 </body>
