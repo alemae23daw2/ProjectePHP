@@ -47,7 +47,7 @@
         <a href="personal.php">Canviar credencials d'ADMIN</a><br>
         <a href="professional.php">Agenda professional</a><br>
         <a href="serveis.php">Agenda de serveis</a><br>
-        <p><a href="registre.php">Registre de nous usuaris</a></p>
+        <p><a href="verUsuaris.php">Registre de nous usuaris</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 
         <?php

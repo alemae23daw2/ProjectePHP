@@ -1,5 +1,5 @@
 <?php
-    define('FITXER_USUARIS', "usuaris/usuaris");
+    define('FITXER_GESTORS', "usuaris/gestors");
 
     function fLlegeixFitxer($nomFitxer)
     {
@@ -12,14 +12,14 @@
         return $dades;
     }
 
-    $usuaris = fLlegeixFitxer(FITXER_USUARIS);
+    $gestors = fLlegeixFitxer(FITXER_GESTORS);
 ?>
 
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="utf-8">
-    <title>Llista d'Usuaris</title>
+    <title>Llista d'Gestors</title>
     <style>
 
         table {
@@ -37,26 +37,20 @@
     <h3><b>Llista d'Usuaris</b></h3>
     <table>
         <tr>
-            <th>ID Usuari</th>
+            <th>ID Gestor</th>
             <th>Usuari</th>
             <th>Nom Complet</th>
             <th>Correu</th>
             <th>Telèfon</th>
-            <th>Visa</th>
-            <th>Codi Postal</th>
-            <th>Gestor</th>
         </tr>
-        <?php foreach ($usuaris as $usuari) : ?>
-            <?php $detallsUsuari = explode(":", $usuari); ?>
+        <?php foreach ($gestors as $gestor) : ?>
+            <?php $detallsGestor = explode(":", $gestor); ?>
             <tr>
-                <td><?= $detallsUsuari[4] ?></td>
-                <td><?= $detallsUsuari[0] ?></td>
-                <td><?= $detallsUsuari[5] ?></td>
-                <td><?= $detallsUsuari[2] ?></td>
-                <td><?= $detallsUsuari[6] ?></td>
-                <td><?= $detallsUsuari[7] ?></td>
-                <td><?= $detallsUsuari[8] ?></td>
-                <td><?= $detallsUsuari[9] ?></td>
+                <td><?= $detallsGestor[4] ?></td>
+                <td><?= $detallsGestor[0] ?></td>
+                <td><?= $detallsGestor[5] ?></td>
+                <td><?= $detallsGestor[2] ?></td>
+                <td><?= $detallsGestor[6] ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
