@@ -1,0 +1,8 @@
+Granito:23€:5%:Si
+Mármol Blanco:30€:8%:Sí
+Ópalo:45€:3%:No
+Jaspe Rojo:18€:6%:Sí
+Turquesa:50€:4%:No
+Amatista:35€:7%:Sí
+Ónice Negro:28€:4%:No
+Cuarzo Rosa:42€:6%:Sí

@@ -13,7 +13,8 @@
     <title>Informació</title>
 </head>
 <body>
-    <p>Login</p>
-    <button type="button" onclick="location='index.php'">Inici</button>
+    <button type="button" href="login.php">Login</button>
+    <button type="button" href="index.php">Inici</button>
+    <p>Explicacion de la Pagina web y su funcionalidad la tienda es de piedras</p>
 </body>
 </html>
