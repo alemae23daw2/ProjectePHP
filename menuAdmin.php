@@ -3,6 +3,7 @@
 	define('ADMIN',"1");
 
 	session_start();
+
 	function fLlegeixFitxer($nomFitxer){
 		if ($fp=fopen($nomFitxer,"r")) {
 			$midaFitxer=filesize($nomFitxer);
@@ -43,8 +44,8 @@
 		<title>Visualitzador d'ADMIN</title>
 	</head>
 	<body>
-		<h3><b>Menú del visualitzador d'ADMIN</b></h3>
-        <p><a href="personal.php">Canviar credencials d'ADMIN</a></p>
+		<h3><b>Menú de l'ADMIN</b></h3>
+        <p><a href="canviarDadesAdmin.php">Canviar credencials d'ADMIN</a></p>
         <p><a href="professional.php">Llista GESTORS</a></p>
         <p><a href="serveis.php">Llista USUARIS</a></p>
         <p><a href="registreGestor.php">Registre de nous GESTORS</a></p>
