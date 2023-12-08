@@ -40,13 +40,13 @@
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador d'ADMIN</title>
+		<title>Visualitzador de GESTOR</title>
 	</head>
 	<body>
-		<h3><b>Menú del visualitzador d'ADMIN</b></h3>
+		<h3><b>Menú del GESTOR</b></h3>
         <a href="personal.php">Canviar credencials d'ADMIN</a><br>
         <a href="professional.php">Agenda professional</a><br>
-        <a href="serveis.php">Agenda de serveis</a><br>
+        <a href="afegirProducte.php">Afegir Productes a la Botiga</a><br>
         <p><a href="verUsuaris.php">Registre de nous usuaris</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 

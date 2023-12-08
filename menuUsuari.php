@@ -40,10 +40,10 @@
 <html lang="ca">
 	<head>
 		<meta charset="utf-8">
-		<title>Visualitzador d'ADMIN</title>
+		<title>Visualitzador de USUARI</title>
 	</head>
 	<body>
-		<h3><b>Menú del visualitzador d'ADMIN</b></h3>
+		<h3><b>Menú del USUARI</b></h3>
         <a href="personal.php">Canviar credencials d'ADMIN</a><br>
         <a href="professional.php">Agenda professional</a><br>
         <a href="serveis.php">Agenda de serveis</a><br>

@@ -26,7 +26,11 @@
             return 26;
         }
 
-        function fActualitzaDades($nomUsuari,$ctsnya,$tipus, ){
+        function fActualitzaDades($nomUsuari,$ctsnya,$tipus){
+            $dades = fLlegeixFitxer(FITXER_ADMIN);
+            foreach($dades as $dada){
+                
+            }
             $ctsnya_hash=password_hash($ctsnya,PASSWORD_DEFAULT);
             $dades_nou_usuari=$nomUsuari.":".$ctsnya_hash.":".$tipus."\n";
             if ($fp=fopen(FITXER_USUARIS,"a")) {
