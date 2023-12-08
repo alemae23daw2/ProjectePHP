@@ -27,8 +27,6 @@
     function fActualitzaUsuaris($nomUsuari,$ctsnya,$fullname, $mail, $telf, $visa, $cp){
 		$idUsr = fContaEntrades(FITXER_USUARIS) + 1;
 		$ctsnya_hash=password_hash($ctsnya,PASSWORD_DEFAULT);
-		$fullname = str_replace(' ', '_', $fullname);
-		$fullname .= "_";
 		$gestorID = fContaEntrades(FITXER_GESTORS);
 		$gestorID = rand(1, $gestorID);
 		$dades_nou_usuari=$nomUsuari.":".$ctsnya_hash.":".$mail.":"."0".":"."U-$idUsr".":"."$fullname".":"."$telf".":"."$visa".":"."$cp".":"."G-$gestorID".":"."\n";
