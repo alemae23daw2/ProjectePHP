@@ -1,5 +1,5 @@
 <?php
-	define('FITXER_ADMIN',"usuaris/admin");
+    define('FITXER_ADMIN',"usuaris/admin");
 	define('ADMIN',"1");
 
 	session_start();
@@ -36,27 +36,17 @@
 	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
 		header("Location: logout_expira_sessio.php");
 	}	
+
+    require_once 'vendor/autoload.php';
+    use Dompdf\Dompdf;
+
+    ob_start();
+    require_once("verGest.php");
+    $dompdf = new DOMPDF();
+    $html = ob_get_clean();
+    $dompdf->load_html($html);
+
+    $dompdf->set_paper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream();
 ?>
-<!DOCTYPE html>
-<html lang="ca">
-	<head>
-		<meta charset="utf-8">
-		<title>Visualitzador d'ADMIN</title>
-	</head>
-	<body>
-		<h3><b>Menú de l'ADMIN</b></h3>
-        <p><a href="canviarDadesAdmin.php">Canviar credencials d'ADMIN</a></p>
-        <p><a href="verGest.php">Llista GESTORS</a></p>
-        <p><a href="verUsuaris.php">Llista USUARIS</a></p>
-        <p><a href="registreGestor.php">Registre de nous GESTORS</a></p>
-		<p><a href="registreUsuari.php">Registre de nous USUARIS</a></p>
-        <p><a href="logout.php">Finalitza la sessió</a></p>
-        <label class="diahora"> 
-        <?php
-			echo "<p>Admin actual: ".$_SESSION['usuari']."</p>";
-			date_default_timezone_set('Europe/Andorra');
-			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
-        ?>
-        </label>		
-	</body>
-</html>

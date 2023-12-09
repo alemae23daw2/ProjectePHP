@@ -21,7 +21,6 @@
     <meta charset="utf-8">
     <title>Llista d'Usuaris</title>
     <style>
-
         table {
             border: 5px solid black;
             border-spacing: 10px 5px;
@@ -30,6 +29,16 @@
             border: 1px solid black;
             padding: 8px;
             text-align: center;
+        }
+        .pdf{
+            background-color: red;
+            color: white;
+        }
+        button{
+            color: black;
+        }
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -62,5 +71,6 @@
     </table>
     <br>
     <a href="login.php"><button>Torna al menú</button></a>
+    <a href="crearPDF_Usr.php"><button class="pdf">Descarrega en PDF</button></a>
 </body>
 </html>

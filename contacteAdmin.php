@@ -1,10 +1,6 @@
 <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    
-    require 'PHPMailer-master/src/Exception.php';
-    require 'PHPMailer-master/src/PHPMailer.php';
-    require 'PHPMailer-master/src/SMTP.php';
+    require_once 'vendor/autoload.php';
+    use PHPMailer\PHPMailer;
 
     $mail = new PHPMailer(true);
 
@@ -12,7 +8,7 @@ try {
     //Server settings
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'user@example.com';                     //SMTP username
     $mail->Password   = 'secret';                               //SMTP password
@@ -44,6 +40,17 @@ try {
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Contactar amb l'ADMIN</h1>
+    <form action="contacteAdmin.php" method="POST">
+        <select name="asumpte">
+            <option value="" disabled selected hidden>Assumpte del Correu</option>
+            <option value="Petició d'addició de client">Petició d'addició de client</option>
+            <option value="Petició de modificació de client">Petició de modificació de client</option>
+            <option value="Petició d'esborrament de client">Petició d'esborrament de client</option>
+        </select><br><br>
+        <textarea name="message" placeholder="Cos del missatge: " tabindex="5"></textarea><br><br>
+        <button type="submit" name="send" id="contact-submit">Submit Now</button>
+    </form>
+    <a href="menuAdmin.php"><button>Tornar al menú</button></a>
 </body>
 </html>

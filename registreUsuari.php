@@ -36,11 +36,19 @@
 			}
 			else{
 				$afegit=false;
-			}				
+			}
 			fclose($fp);
 		}
 		else{
 			$afegit=false;
+		}
+		$carpeta_comandes = "comandes/{$nomUsuari}";
+		$carpeta_cistelles = "cistelles/{$nomUsuari}";
+		if (!file_exists($carpeta_comandes)) {
+            mkdir($carpeta_comandes, 0777, true);
+        }
+		if (!file_exists($carpeta_cistelles)) {
+            mkdir($carpeta_cistelles, 0777, true);
 		}
 		return $afegit;
 	}
