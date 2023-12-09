@@ -1,5 +1,0 @@
-0001:Jaime:1234Jaime:0:Jaime Lopez Martinez:jaime.lopez@gmail.com:685723951:C.Cartagena 56:4119110112340000:8001
-0002:Maria:5678Maria:0:Maria Rodriguez Garcia:maria.rodriguez@gmail.com:654789321:C.Madrid 34:4119222234567890:8002
-0003:Carlos:abcdCarlos:0:Carlos Gonzalez Perez:carlos.gonzalez@gmail.com:789654123:C.Barcelona 78:4119333345678901:8003
-0004:Laura:efghLaura:0:Laura Martinez Fernandez:laura.martinez@gmail.com:123456789:C.Valencia 12:4119444456789012:8004
-0005:Pedro:ijklPedro:0:Pedro Sanchez Ramirez:pedro.sanchez@gmail.com:987654321:C.Sevilla 45:4119555567890123:8005
