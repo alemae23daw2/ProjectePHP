@@ -58,7 +58,7 @@
     <div class="div1">
 
         <?php
-        session_start(); // Inicia la sesión
+        session_start(); 
 
         $ruta_archivo = "items.txt";
         $archivo = fopen($ruta_archivo, "r");
@@ -72,7 +72,6 @@
                 echo "<p>Disponibilidad: $datos[3]</p>";
                 echo "<p>Precio: $datos[1]</p>";
 
-                // Verifica la disponibilidad antes de mostrar el formulario
                 if (trim($datos[3]) !== 'No') {
                     echo "<form method='post'>";
                     echo "<input type='hidden' name='producto' value='$datos[0]'>";
@@ -93,64 +92,69 @@
         } else {
             echo "No se pudo abrir el archivo.";
         }
-
-        // Agregar al carrito
-        if (isset($_POST['agregarCarrito'])) {
-            $producto = $_POST['producto'];
-            $precio = $_POST['precio'];
-            $disponibilidad = $_POST['disponibilidad'];
-            $cantidad = $_POST['cantidad'];
-
-            // Verifica si el carrito ya existe en la sesión
-            if (!isset($_SESSION['carrito'])) {
-                $_SESSION['carrito'] = array();
-            }
-
-        // Verifica la disponibilidad antes de añadir al carrito
-            $indiceProducto = -1;
-            for ($i = 0; $i < count($_SESSION['carrito']); $i++) {
-                if ($_SESSION['carrito'][$i]['producto'] === $producto) {
-                    $indiceProducto = $i;
-                    break;
-                }
-            }
-
-            // Si el producto está en el carrito, actualiza la cantidad
-            if ($indiceProducto !== -1) {
-                $_SESSION['carrito'][$indiceProducto]['cantidad'] += $cantidad;
-            } else {
-                // Si el producto no está en el carrito, lo agrega
-                $item = array('producto' => $producto, 'precio' => $precio, 'disponibilidad' => $disponibilidad, 'cantidad' => $cantidad);
-                array_push($_SESSION['carrito'], $item);
-            }
-        
-        }
         ?>
 
     </div>
 
     <div id="carrito">
-        <h2>Carrito de la compra</h2>
+        <h2>Cesta de Compra</h2>
         <?php
-        // Muestra los productos en el carrito
-        if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
-            foreach ($_SESSION['carrito'] as $item) {
-                echo "<p>{$item['producto']} - Precio: {$item['precio']} - Cantidad: {$item['cantidad']} - Disponibilidad: {$item['disponibilidad']}</p>";
+        if (isset($_SESSION['usuari'])) {
+            $claveUsuario = $_SESSION['usuari'];
+
+            $cesta = isset($_SESSION['cesta'][$claveUsuario]) ? $_SESSION['cesta'][$claveUsuario] : array();
+
+            if (isset($_POST['agregarCarrito'])) {
+                $producto = $_POST['producto'];
+                $precio = $_POST['precio'];
+                $cantidad = $_POST['cantidad'];
+
+                if (array_key_exists($producto, $cesta)) {
+                    $cesta[$producto]['cantidad'] += $cantidad;
+                } else {
+                    $cesta[$producto] = array('precio' => $precio, 'cantidad' => $cantidad);
+                }
+
+                $_SESSION['cesta'][$claveUsuario] = $cesta;
+
+                $archivoCesta = fopen("cistella_$claveUsuario.txt", "w");
+                foreach ($cesta as $producto => $detalle) {
+                    fwrite($archivoCesta, "$producto:{$detalle['cantidad']}\n");
+                }
+                fclose($archivoCesta);
+            }
+
+            if (!empty($cesta)) {
+                echo "<ul>";
+                foreach ($cesta as $producto => $detalle) {
+                    echo "<li>$producto - Cantidad: {$detalle['cantidad']}</li>";
+                }
+                echo "</ul>";
+            } else {
+                echo "<p>La cesta está vacía.</p>";
             }
         } else {
-            echo "<p>El carrito está vacío.</p>";
+            echo "<p>Por favor, inicia sesión para ver tu cesta.</p>";
         }
         ?>
     </div>
 
     <div id="borrarCesta">
-        <form method="post">
-            <button type="submit" name="borrarCesta">Borrar la Cesta</button>
-        </form>
         <?php
-        // Borrar la cesta
-        if (isset($_POST['borrarCesta'])) {
-            unset($_SESSION['carrito']);
+        if (isset($_SESSION['usuari']) && isset($_POST['borrarCesta'])) {
+            $claveUsuario = $_SESSION['usuari'];
+            unset($_SESSION['cesta'][$claveUsuario]);
+
+            file_put_contents("cistella_$claveUsuario.txt", "");
+            echo "<p>Cesta borrada</p>";
+        }
+        ?>
+
+        <?php
+        if (isset($_SESSION['usuari'])) {
+            echo "<form method='post'>";
+            echo "<button type='submit' name='borrarCesta'>Borrar Cesta</button>";
+            echo "</form>";
         }
         ?>
     </div>
