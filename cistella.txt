@@ -1,1 +1,3 @@
-Granito:1
+Amatista:1
+Mármol Blanco:1
+Cuarzo Rosa:1
