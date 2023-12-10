@@ -1,7 +1,1 @@
-Amatista:1
-Mármol Blanco:1
-Cuarzo Rosa:1
-Array
-Array
-Array
-Array
+Granito:2:23€

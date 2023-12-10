@@ -11,14 +11,12 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-
         header {
             background-color: #333;
             color: white;
             padding: 1em;
             text-align: center;
         }
-
         .div1 {
             display: flex;
             flex-wrap: wrap;
@@ -26,7 +24,6 @@
             padding: 20px;
             column-gap: 150px;
         }
-
         .item {
             background-color: #fff;
             border: 1px solid #ddd;
@@ -36,13 +33,11 @@
             width: 200px;
             text-align: center;
         }
-
         #carrito {
             margin-top: 20px;
             padding: 10px;
             background-color: #ddd;
         }
-
         #borrarCesta {
             margin-top: 20px;
             text-align: center;
@@ -50,23 +45,19 @@
     </style>
 </head>
 <body>
-
     <header>
         <h1>Tienda Online</h1>
     </header>
-
     <div class="div1">
 
         <?php
-        session_start(); 
+        session_start();
 
         $ruta_archivo = "items.txt";
         $archivo = fopen($ruta_archivo, "r");
-
         if ($archivo) {
             while (($linea = fgets($archivo)) !== false) {
                 $datos = explode(":", $linea);
-
                 echo "<div class='item'>";
                 echo "<h2>$datos[0]</h2>";
                 echo "<p>Disponibilidad: $datos[3]</p>";
@@ -84,81 +75,82 @@
                 } else {
                     echo "<p>Producto no disponible</p>";
                 }
-
                 echo "</div>";
             }
-
             fclose($archivo);
         } else {
             echo "No se pudo abrir el archivo.";
         }
-        ?>
 
-    </div>
+        if (isset($_POST['agregarCarrito'])) {
+            $producto = $_POST['producto'];
+            $precio = $_POST['precio'];
+            $disponibilidad = $_POST['disponibilidad'];
+            $cantidad = $_POST['cantidad'];
 
-    <div id="carrito">
-        <h2>Cesta de Compra</h2>
-        <?php
-        if (isset($_SESSION['usuari'])) {
-            $claveUsuario = $_SESSION['usuari'];
-
-            $cesta = isset($_SESSION['cesta'][$claveUsuario]) ? $_SESSION['cesta'][$claveUsuario] : array();
-
-            if (isset($_POST['agregarCarrito'])) {
-                $producto = $_POST['producto'];
-                $precio = $_POST['precio'];
-                $cantidad = $_POST['cantidad'];
-
-                if (array_key_exists($producto, $cesta)) {
-                    $cesta[$producto]['cantidad'] += $cantidad;
-                } else {
-                    $cesta[$producto] = array('precio' => $precio, 'cantidad' => $cantidad);
-                }
-
-                $_SESSION['cesta'][$claveUsuario] = $cesta;
-
-                $archivoCesta = fopen("cistella_$claveUsuario.txt", "w");
-                foreach ($cesta as $producto => $detalle) {
-                    fwrite($archivoCesta, "$producto:{$detalle['cantidad']}\n");
-                }
-                fclose($archivoCesta);
+            if (!isset($_SESSION['carrito'])) {
+                $_SESSION['carrito'] = array();
             }
 
-            if (!empty($cesta)) {
-                echo "<ul>";
-                foreach ($cesta as $producto => $detalle) {
-                    echo "<li>$producto - Cantidad: {$detalle['cantidad']}</li>";
+            $indiceProducto = -1;
+            for ($i = 0; $i < count($_SESSION['carrito']); $i++) {
+                if ($_SESSION['carrito'][$i]['producto'] === $producto) {
+                    $indiceProducto = $i;
+                    break;
                 }
-                echo "</ul>";
+            }
+
+            if ($indiceProducto !== -1) {
+                $_SESSION['carrito'][$indiceProducto]['cantidad'] += $cantidad;
             } else {
-                echo "<p>La cesta está vacía.</p>";
+                $item = array('producto' => $producto, 'precio' => $precio, 'disponibilidad' => $disponibilidad, 'cantidad' => $cantidad);
+                array_push($_SESSION['carrito'], $item);
             }
-        } else {
-            echo "<p>Por favor, inicia sesión para ver tu cesta.</p>";
         }
         ?>
-    </div>
 
+    </div>
     <div id="borrarCesta">
-        <?php
-        if (isset($_SESSION['usuari']) && isset($_POST['borrarCesta'])) {
-            $claveUsuario = $_SESSION['usuari'];
-            unset($_SESSION['cesta'][$claveUsuario]);
-
-            file_put_contents("cistella_$claveUsuario.txt", "");
-            echo "<p>Cesta borrada</p>";
-        }
-        ?>
-
-        <?php
-        if (isset($_SESSION['usuari'])) {
-            echo "<form method='post'>";
-            echo "<button type='submit' name='borrarCesta'>Borrar Cesta</button>";
-            echo "</form>";
-        }
-        ?>
+        <form method="post">
+            <button type="submit" name="vaciarCesta">Vaciar Cesta</button>
+        </form>
     </div>
 
+    <?php
+    $nomUsuari = $_SESSION["usuari"];
+    $rutaCistella = "{$nomUsuari}/cistella.txt"
+    if (isset($_POST['vaciarCesta'])) {
+        file_put_contents("$rutaCistella", "");
+        unset($_SESSION['carrito']);
+    }
+
+if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
+    $archivoCesta = fopen("$rutaCistella", "w");
+
+    if ($archivoCesta) {
+        foreach ($_SESSION['carrito'] as $item) {
+            $linea = "{$item['producto']}:{$item['cantidad']}:{$item['precio']}\n";
+            fwrite($archivoCesta, $linea);
+        }
+
+        fclose($archivoCesta);
+    } else {
+        echo "No se pudo abrir el archivo cistella.txt para escribir.";
+    }
+}
+
+if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
+    echo "<ul>";
+    foreach ($_SESSION['carrito'] as $item) {
+        echo "<li>{$item['producto']} - Cantidad: {$item['cantidad']} - Precio unitario: {$item['precio']}</li>";
+    }
+    echo "</ul>";
+    echo "<form method='post'>";
+    echo "</form>";
+} else {
+    echo "<p>El carrito está vacío.</p>";
+}
+?>
     <footer>
         <p>&copy; 2023 Piedras MilMan</p>
     </footer>
