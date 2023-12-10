@@ -93,7 +93,7 @@
     <header>
         <h1>Tienda Online</h1>
     </header>
-
+    <button onclick="history.back()">Torna enrere</button>
     <div class="div1">
 
         <?php
@@ -197,6 +197,12 @@
     <footer>
         <p>&copy; 2023 Piedras MilMan</p>
     </footer>
-
+    <label class="diahora"> 
+        <?php
+			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
+			date_default_timezone_set('Europe/Andorra');
+			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
+        ?>
+    </label>
 </body>
 </html>

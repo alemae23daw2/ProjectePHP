@@ -53,10 +53,10 @@
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 
         <?php
-			echo "<p>Admin actual: ".$_SESSION['usuari']."</p>";
+			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
 			date_default_timezone_set('Europe/Andorra');
 			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
         ?>
-        </label>		
+        </label>
 	</body>
 </html>

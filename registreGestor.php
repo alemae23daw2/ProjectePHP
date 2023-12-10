@@ -107,7 +107,14 @@
 			</p>
 			<input type="submit" value="Enregistra el nou usuari"/>
 		</form>
-		<a href="login.php"><button>Torna al menú</button></a>
+		<button onclick="history.back()">Torna enrere</button>
+		<label class="diahora"> 
+        <?php
+			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
+			date_default_timezone_set('Europe/Andorra');
+			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
+        ?>
+        </label>
 	</body>
 </html>
 

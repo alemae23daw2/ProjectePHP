@@ -13,8 +13,7 @@
     <title>Informació</title>
 </head>
 <body>
-    <button type="button" href="login.php">Login</button>
-    <button type="button" href="index.php">Inici</button>
+    <button onclick="history.back()">Torna enrere</button>
     <p>Explicacion de la Pagina web y su funcionalidad la tienda es de piedras</p>
 </body>
 </html>

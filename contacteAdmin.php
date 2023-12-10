@@ -51,6 +51,6 @@ try {
         <textarea name="message" placeholder="Cos del missatge: " tabindex="5"></textarea><br><br>
         <button type="submit" name="send" id="contact-submit">Submit Now</button>
     </form>
-    <a href="menuAdmin.php"><button>Tornar al menú</button></a>
+    <button onclick="history.back()">Torna enrere</button>
 </body>
 </html>
