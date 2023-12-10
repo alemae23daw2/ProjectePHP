@@ -47,7 +47,8 @@
         <a href="personal.php">Canviar credencials d'ADMIN</a><br>
         <a href="professional.php">Agenda professional</a><br>
         <a href="afegirProducte.php">Afegir Productes a la Botiga</a><br>
-        <p><a href="verUsuaris.php">Registre de nous usuaris</a></p>
+        <p><a href="verUsuaris.php">Llista de USUARIS</a></p>
+		<p><a href="vendor/contacteAdmin.php">Contactar amb el ADMIN</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 
         <?php
