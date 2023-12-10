@@ -42,14 +42,16 @@
 		else{
 			$afegit=false;
 		}
-		$carpeta_comandes = "comandes/{$nomUsuari}";
-		$carpeta_cistelles = "cistelles/{$nomUsuari}";
-		if (!file_exists($carpeta_comandes)) {
-            mkdir($carpeta_comandes, 0777, true);
+		$carpeta_usuari = "{$nomUsuari}";
+		$fitxercistella = "{$nomUsuari}/cistella";
+		$fitxercomanda = "{$nomUsuari}/comanda";
+		if (!file_exists($carpeta_usuari)) {
+            mkdir($carpeta_usuari, 0777, true);
+			$myfile = fopen($fitxercistella, "w");
+			fclose($myfile);
+			$myfile2 = fopen($fitxercomanda, "w");
+			fclose($myfile2);
         }
-		if (!file_exists($carpeta_cistelles)) {
-            mkdir($carpeta_cistelles, 0777, true);
-		}
 		return $afegit;
 	}
 
