@@ -118,7 +118,7 @@
 
     <?php
     $nomUsuari = $_SESSION["usuari"];
-    $rutaCistella = "{$nomUsuari}/cistella.txt"
+    $rutaCistella = "{$nomUsuari}/cistella.txt";
     if (isset($_POST['vaciarCesta'])) {
         file_put_contents("$rutaCistella", "");
         unset($_SESSION['carrito']);
