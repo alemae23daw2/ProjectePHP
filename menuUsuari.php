@@ -49,6 +49,7 @@
         <a href="vendor/contacteGestor.php">Contactar amb un Gestor</a><br>
         <p><a href="registre.php">Registre de nous usuaris</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
+		<p><a href="comanda.php">Comanda</a></p>
         <label class="diahora"> 
         <?php
 			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";

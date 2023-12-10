@@ -48,6 +48,7 @@
         <p><a href="canviarDadesAdmin.php">Canviar credencials d'ADMIN</a></p>
         <p><a href="verGest.php">Llista GESTORS</a></p>
         <p><a href="verUsuaris.php">Llista USUARIS</a></p>
+		<p><a href="editarUsuaris.php">Editar Usuaris</a></p>
         <p><a href="registreGestor.php">Registre de nous GESTORS</a></p>
 		<p><a href="registreUsuari.php">Registre de nous USUARIS</a></p>
 		<p><a href="vendor/contacteAdmin.php">Contactar amb un ADMIN</a></p>
