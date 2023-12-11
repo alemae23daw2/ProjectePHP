@@ -10,7 +10,7 @@
     <h3>Tematica:</h3>
     <p>Es una botiga en la qual podras comprar diferents tipus de pedres o minerals desde el teu propi compte de usuari</p>
 
-    <p><a href="index.php">Torna a la pàgina inicial</a></p>
+    <button onclick="history.back()">Torna enrere</button>
 
     <label class="diahora"> 
     </label>

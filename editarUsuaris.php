@@ -138,7 +138,7 @@
         <input type="submit" value="Editar Usuario">
     </form>
     <br>
-    <p><a href="login.php">Torna a la pàgina d'inici de sessió</a></p>
+    <button onclick="history.back()">Torna enrere</button>
         <label class="diahora"> 
         <?php
             echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";

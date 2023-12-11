@@ -49,5 +49,6 @@
 
         <input type="submit" value="Agregar Item">
     </form>
+    <button onclick="history.back()">Torna enrere</button>
 </body>
 </html>

@@ -21,6 +21,7 @@
         echo '<p>No hay usuarios registrados.</p>';
     }
     ?>
+    <button onclick="history.back()">Torna enrere</button>
 
 </body>
 </html>
