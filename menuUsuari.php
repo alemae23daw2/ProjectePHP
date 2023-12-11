@@ -44,7 +44,6 @@
 	</head>
 	<body>
 		<h3><b>Menú del USUARI</b></h3>
-        <a href="personal.php">Canviar credencials d'ADMIN</a><br>
         <a href="botiga.php">Botiga</a><br>
         <a href="vendor/contacteGestor.php">Contactar amb un Gestor</a><br>
         <p><a href="registre.php">Registre de nous usuaris</a></p>

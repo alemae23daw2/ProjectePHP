@@ -51,7 +51,6 @@
 		<p><a href="editarUsuaris.php">Editar Usuaris</a></p>
         <p><a href="registreGestor.php">Registre de nous GESTORS</a></p>
 		<p><a href="registreUsuari.php">Registre de nous USUARIS</a></p>
-		<p><a href="vendor/contacteAdmin.php">Contactar amb un ADMIN</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 
         <?php

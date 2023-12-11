@@ -16,7 +16,11 @@
 
     echo "<ul>";
 
-    foreach ($usuariosArray as $usuarioInfo) {
+    $totalUsuarios = count($usuariosArray);
+    foreach ($usuariosArray as $key => $usuarioInfo) {
+        if ($key >= $totalUsuarios - 1) {
+            break;
+        }
         $usuarioData = explode(":", $usuarioInfo);
 
         echo "<li>";
@@ -29,7 +33,7 @@
     echo "</ul>";
     ?>
 
-    <h2>Editar Usuario</h2>
+    <h2>Editar Usuario (dejar campo en blanco para no cambiar)</h2>
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -38,7 +42,6 @@
         $email = $_POST["email"];
         $nombre = $_POST["nombre"];
         $nombreC = $_POST["nombreC"];
-        $IDusuari = $_POST["idusr"];
         $telf = $_POST["telf"];
         $visa = $_POST["visa"];
         $cp = $_POST["cp"];
@@ -57,10 +60,6 @@
 
             if (!empty($password)) {
                 $usuarioData[1] = password_hash($password, PASSWORD_DEFAULT);
-            }
-
-            if (!empty($IDusuari)) {
-                $usuarioData[4] = $IDusuari;
             }
 
             if (!empty($email)) {
@@ -104,43 +103,48 @@
     ?>
 
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for="username">Nombre de usuario que quieres editar:</label>
+        <label for="username">Nombre de usuario que quieres editar: </label>
         <input type="text" name="username" required>
         <br>
 
-        <label for="password">Nueva contraseña (dejar en blanco para no cambiar):</label>
+        <label for="password">Nueva contraseña:  </label>
         <input type="password" name="password">
         <br>
 
-        <label for="email">Nuevo correo electrónico (dejar en blanco para no cambiar):</label>
+        <label for="email">Nuevo correo electrónico: </label>
         <input type="email" name="email">
         <br>
 
-        <label for="nombre">Nuevo nombre de usuario (dejar en blanco para no cambiar):</label>
+        <label for="nombre">Nuevo nombre de usuario: </label>
         <input type="text" name="nombre">
         <br>
 
-        <label for="nombreC">Nuevo nombre completo (dejar en blanco para no cambiar):</label>
+        <label for="nombreC">Nuevo nombre completo: </label>
         <input type="text" name="nombreC">
         <br>
 
-        <label for="idusr">Nuevo ID (dejar en blanco para no cambiar):</label>
-        <input type="text" name="idusr">
-        <br>
-
-        <label for="telf">Nuevo telefono (dejar en blanco para no cambiar):</label>
+        <label for="telf">Nuevo telefono: </label>
         <input type="text" name="telf">
         <br>
         
-        <label for="visa">Nueva visa (dejar en blanco para no cambiar):</label>
+        <label for="visa">Nueva visa: </label>
         <input type="text" name="visa">
         <br>
 
-        <label for="cp">Nuevo codigo postal (dejar en blanco para no cambiar):</label>
+        <label for="cp">Nuevo codigo postal: </label>
         <input type="text" name="cp">
         <br>
 
         <input type="submit" value="Editar Usuario">
     </form>
+    <br>
+    <p><a href="login.php">Torna a la pàgina d'inici de sessió</a></p>
+        <label class="diahora"> 
+        <?php
+            echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
+			date_default_timezone_set('Europe/Andorra');
+			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";
+        ?>
+        </label>
 </body>
 </html>
