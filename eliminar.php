@@ -8,9 +8,18 @@ if (isset($_GET['usuario'])) {
 
     $usuarios = array_diff($usuarios, [$usuarioAEliminar]);
 
-    file_put_contents('usuaris/usuaris', implode(PHP_EOL, $usuarios));
+    $content = implode(PHP_EOL, $usuarios) . PHP_EOL;
 
-    header('Location: index.php');
+    file_put_contents('usuaris/usuaris', $content);
+
+    $folderToDelete = $usuarioAEliminar;
+    $folderPath = DIR . '/' . $folderToDelete;
+
+    if (is_dir($folderPath)) {
+        deleteDirectory($folderPath);
+    }
+
+    header('Location: menuAdmin.php');
     exit;
 }
 ?>

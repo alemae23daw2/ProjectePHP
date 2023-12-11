@@ -45,12 +45,14 @@
 	</head>
 	<body>
 		<h3><b>Menú de l'ADMIN</b></h3>
-        <p><a href="canviarDadesAdmin.php">Canviar credencials d'ADMIN</a></p>
+        <p><a href="editarAdmin.php">Canviar credencials d'ADMIN</a></p>
         <p><a href="verGest.php">Llista GESTORS</a></p>
         <p><a href="verUsuaris.php">Llista USUARIS</a></p>
 		<p><a href="editarUsuaris.php">Editar Usuaris</a></p>
         <p><a href="registreGestor.php">Registre de nous GESTORS</a></p>
 		<p><a href="registreUsuari.php">Registre de nous USUARIS</a></p>
+		<p><a href="eliminarUsr.php">Eliminar USUARIS</a></p>
+
         <p><a href="logout.php">Finalitza la sessió</a></p>
         <label class="diahora"> 
         <?php
