@@ -9,25 +9,20 @@
     <h2>Lista de Usuarios</h2>
 
     <?php
-    // Mostrar la lista de usuarios
     $usuariosFile = "usuaris/usuaris";
     $usuariosContent = file_get_contents($usuariosFile);
 
-    // Dividir la cadena en líneas
     $usuariosArray = explode("\n", $usuariosContent);
 
     echo "<ul>";
 
     foreach ($usuariosArray as $usuarioInfo) {
-        // Dividir la información del usuario en campos
         $usuarioData = explode(":", $usuarioInfo);
 
-        // Mostrar cada campo en un elemento de lista
         echo "<li>";
         echo "Nombre de usuario: " . $usuarioData[0] . "<br>";
         echo "Correo electrónico: " . $usuarioData[2] . "<br>";
         echo "Nombre completo: " . $usuarioData[5] . "<br>";
-        // Agrega más campos según tus necesidades
         echo "</li>";
     }
 
@@ -38,38 +33,66 @@
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Obtener los valores del formulario
         $username = $_POST["username"];
         $password = $_POST["password"];
         $email = $_POST["email"];
+        $nombre = $_POST["nombre"];
+        $nombreC = $_POST["nombreC"];
+        $IDusuari = $_POST["idusr"];
+        $telf = $_POST["telf"];
+        $visa = $_POST["visa"];
+        $cp = $_POST["cp"];
+        $ges = $_POST["ges"];
 
-        // Leer el archivo de usuarios
+
+
         $usuariosFile = "usuaris/usuaris";
         $usuariosContent = file_get_contents($usuariosFile);
 
-        // Buscar el usuario en el archivo
         $userToEdit = $username . ":";
         $pos = strpos($usuariosContent, $userToEdit);
 
         if ($pos !== false) {
-            // Usuario encontrado, extraer la información del usuario
             $usuarioData = explode(":", $usuariosArray[$pos]);
 
-            // Realizar la edición
             if (!empty($password)) {
-                // Cambiar la contraseña (implementa tu lógica)
                 $usuarioData[1] = password_hash($password, PASSWORD_DEFAULT);
             }
 
+            if (!empty($IDusuari)) {
+                $usuarioData[4] = $IDusuari;
+            }
+
             if (!empty($email)) {
-                // Cambiar el correo electrónico (implementa tu lógica)
                 $usuarioData[2] = $email;
             }
 
-            // Actualizar la línea en la que se encuentra el usuario en el array
+            if (!empty($nombre)) {
+                $usuarioData[0] = $nombre;
+            }
+
+            if (!empty($nombreC)) {
+                $usuarioData[5] = $nombreC;
+            }
+
+            if (!empty($telf)) {
+                $usuarioData[6] = $telf;
+            }
+
+            if (!empty($visa)) {
+                $usuarioData[7] = $visa;
+            }
+
+            if (!empty($cp)) {
+                $usuarioData[8] = $cp;
+            }
+            
+            if (!empty($ges)) {
+                $usuarioData[9] = $ges;
+            }
+
             $usuariosArray[$pos] = implode(":", $usuarioData);
 
-            // Actualizar el contenido del archivo
             $usuariosContent = implode("\n", $usuariosArray);
             file_put_contents($usuariosFile, $usuariosContent);
 
@@ -81,7 +104,7 @@
     ?>
 
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for="username">Nombre de usuario:</label>
+        <label for="username">Nombre de usuario que quieres editar:</label>
         <input type="text" name="username" required>
         <br>
 
@@ -93,7 +116,29 @@
         <input type="email" name="email">
         <br>
 
-        <!-- Agrega más campos según tus necesidades -->
+        <label for="nombre">Nuevo nombre de usuario (dejar en blanco para no cambiar):</label>
+        <input type="text" name="nombre">
+        <br>
+
+        <label for="nombreC">Nuevo nombre completo (dejar en blanco para no cambiar):</label>
+        <input type="text" name="nombreC">
+        <br>
+
+        <label for="idusr">Nuevo ID (dejar en blanco para no cambiar):</label>
+        <input type="text" name="idusr">
+        <br>
+
+        <label for="telf">Nuevo telefono (dejar en blanco para no cambiar):</label>
+        <input type="text" name="telf">
+        <br>
+        
+        <label for="visa">Nueva visa (dejar en blanco para no cambiar):</label>
+        <input type="text" name="visa">
+        <br>
+
+        <label for="cp">Nuevo codigo postal (dejar en blanco para no cambiar):</label>
+        <input type="text" name="cp">
+        <br>
 
         <input type="submit" value="Editar Usuario">
     </form>
