@@ -48,6 +48,32 @@
         echo "L'usuari ha sigut afegit";
 		header("refresh: 2; url=login.php");
 	}
+	
+	define('FITXER_ADMIN',"usuaris/admin");
+	define('ADMIN',"1");
+
+	function fComprovaPermis(){
+		$info = fLlegeixFitxer(FITXER_ADMIN);
+		foreach ($info as $usuari) {
+			$dadesUsuari = explode(":", $usuari);
+			if($dadesUsuari[0] != $_SESSION['usuari']) continue;
+			if($dadesUsuari[0] == $_SESSION['usuari']){
+				return $dadesUsuari[3];
+			}
+		}
+		return 26;
+	}
+	
+	if(fComprovaPermis() != ADMIN){
+		header("Location: auth_error.php");
+	}
+	
+	if (!isset($_SESSION['usuari'])){
+		header("Location: login_error.php");
+	}
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: logout_expira_sessio.php");
+	}	
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -81,7 +107,14 @@
 			</p>
 			<input type="submit" value="Enregistra el nou usuari"/>
 		</form>
-		<a href="login.php"><button>Torna al menú</button></a>
+		<button onclick="history.back()">Torna enrere</button>
+		<label class="diahora"> 
+        <?php
+			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
+			date_default_timezone_set('Europe/Andorra');
+			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
+        ?>
+        </label>
 	</body>
 </html>
 

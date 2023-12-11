@@ -1,6 +1,6 @@
 <?php
     define('FITXER_GESTORS', "usuaris/gestors");
-
+    session_start();
     function fLlegeixFitxer($nomFitxer)
     {
         if ($fp = fopen($nomFitxer, "r")) {
@@ -13,6 +13,32 @@
     }
 
     $gestors = fLlegeixFitxer(FITXER_GESTORS);
+
+    define('FITXER_ADMIN',"usuaris/admin");
+	define('ADMIN',"1");
+
+	function fComprovaPermis(){
+		$info = fLlegeixFitxer(FITXER_ADMIN);
+		foreach ($info as $usuari) {
+			$dadesUsuari = explode(":", $usuari);
+			if($dadesUsuari[0] != $_SESSION['usuari']) continue;
+			if($dadesUsuari[0] == $_SESSION['usuari']){
+				return $dadesUsuari[3];
+			}
+		}
+		return 26;
+	}
+	
+	if(fComprovaPermis() != ADMIN){
+		header("Location: auth_error.php");
+	}
+	
+	if (!isset($_SESSION['usuari'])){
+		header("Location: login_error.php");
+	}
+	if (!isset($_SESSION['expira']) || (time() - $_SESSION['expira'] >= 0)){
+		header("Location: logout_expira_sessio.php");
+	}
 ?>
 
 <!DOCTYPE html>
@@ -21,15 +47,24 @@
     <meta charset="utf-8">
     <title>Llista d'Gestors</title>
     <style>
-
         table {
-            border: 5px solid black;
-            border-spacing: 10px 5px;
+            border: 2px solid black;
+            border-collapse: collapse;
         }
         th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: center;
+        }
+        .pdf{
+            background-color: red;
+            color: white;
+        }
+        button{
+            color: black;
+        }
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -55,6 +90,14 @@
         <?php endforeach; ?>
     </table>
     <br>
-    <a href="login.php"><button>Torna al menú</button></a>
+    <button onclick="history.back()">Torna enrere</button>
+    <a href="crearPDF_Gest.php"><button class="pdf">Descarrega en PDF</button></a>
+    <label class="diahora"> 
+        <?php
+			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
+			date_default_timezone_set('Europe/Andorra');
+			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
+        ?>
+    </label>
 </body>
 </html>

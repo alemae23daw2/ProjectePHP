@@ -44,17 +44,17 @@
 	</head>
 	<body>
 		<h3><b>Menú del USUARI</b></h3>
-        <a href="personal.php">Canviar credencials d'ADMIN</a><br>
-        <a href="professional.php">Agenda professional</a><br>
-        <a href="serveis.php">Agenda de serveis</a><br>
+        <a href="botiga.php">Botiga</a><br>
+        <a href="vendor/contacteGestor.php">Contactar amb un Gestor</a><br>
         <p><a href="registre.php">Registre de nous usuaris</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
+		<p><a href="comanda.php">Comanda</a></p>
         <label class="diahora"> 
         <?php
-			echo "<p>Usuari utilitzant l'agenda: ".$_SESSION['usuari']."</p>";
+			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
 			date_default_timezone_set('Europe/Andorra');
 			echo "<p>Data i hora: ".date('d/m/Y h:i:s')."</p>";	
         ?>
-        </label>		
+        </label>
 	</body>
 </html>

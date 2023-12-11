@@ -10,6 +10,6 @@
 </head>
 <body>
     <h3 style="color: red;">Error de login</h3 style="color: red;">
-    <button type="button" onclick="location='login.php'">Tornar al login</button>
+    <a href="login.php"><button>Torna al Login</button></a>
 </body>
 </html>
