@@ -1,4 +1,3 @@
-
 <?php
 
 if (isset($_GET['usuario'])) {
@@ -13,7 +12,7 @@ if (isset($_GET['usuario'])) {
     file_put_contents('usuaris/usuaris', $content);
 
     $folderToDelete = $usuarioAEliminar;
-    $folderPath = DIR . '/' . $folderToDelete;
+    $folderPath = __DIR__ . '/' . $folderToDelete;
 
     if (is_dir($folderPath)) {
         deleteDirectory($folderPath);
