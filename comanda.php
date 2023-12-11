@@ -1,5 +1,5 @@
 <?php
-session_start(); // Asegúrate de tener esta línea si estás utilizando sesiones
+session_start();
 
 $nomUsuari = $_SESSION["usuari"];
 $rutaCistella = "{$nomUsuari}/cistella";
@@ -13,11 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
     echo '<p>¡Compra realizada con éxito!</p>';
 }
 
-// Muestra la cesta
 echo '<h2>Productos en la cesta:</h2>';
 echo '<pre>' . $cistellaContenido . '</pre>';
 
-// Muestra la comanda
 $comandaContenido = file_get_contents($rutaComanda);
 echo '<h2>Productos en la comanda:</h2>';
 echo '<pre>' . $comandaContenido . '</pre>';
