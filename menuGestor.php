@@ -44,7 +44,7 @@
 	</head>
 	<body>
 		<h3><b>Menú del GESTOR</b></h3>
-        <a href="afegirProducte.php">Afegir Productes a la Botiga</a><br>
+        <a href="afegirProductes.php">Afegir Productes a la Botiga</a><br>
         <p><a href="verUsuaris.php">Llista de USUARIS</a></p>
 		<p><a href="vendor/contacteAdmin.php">Contactar amb el ADMIN</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>

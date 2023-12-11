@@ -46,7 +46,6 @@
 		<h3><b>Menú del USUARI</b></h3>
         <a href="botiga.php">Botiga</a><br>
         <a href="vendor/contacteGestor.php">Contactar amb un Gestor</a><br>
-        <p><a href="registre.php">Registre de nous usuaris</a></p>
         <p><a href="logout.php">Finalitza la sessió</a></p>
 		<p><a href="comanda.php">Comanda</a></p>
         <label class="diahora"> 
