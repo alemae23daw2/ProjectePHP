@@ -108,6 +108,8 @@
 			<input type="submit" value="Enregistra el nou usuari"/>
 		</form>
 		<button onclick="history.back()">Torna enrere</button>
+		<a href="crearAnon.php"><button class="pdf">Crear Usuaris Anonims</button></a>
+		<a href="esborrarAnon.php"><button class="pdf">Esborrar Usuaris Anonims</button></a>
 		<label class="diahora"> 
         <?php
 			echo "<p>Usuari actual: ".$_SESSION['usuari']."</p>";
